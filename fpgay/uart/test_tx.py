@@ -7,9 +7,9 @@ from .tx import Tx
 
 
 def test_send():
-    baud = 9600
-    clk_freq = baud * 4
-    baud_period = 1 / 9600
+    baud = 1200
+    clk_freq = baud * 8
+    baud_period = 1 / baud
 
     tx = Tx(clk_freq, baud, data_bits=7, stop_bits=2)
 
