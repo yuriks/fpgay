@@ -21,7 +21,8 @@ def test_send():
 
             yield tx.i_data.eq(0b1001101)
             yield tx.i_start.eq(True)
-
+            yield Delay(1 / clk_freq)
+            yield tx.i_start.eq(False)
             yield Delay(baud_period / 2)
 
             bits = [
@@ -37,5 +38,5 @@ def test_send():
             assert (yield tx.o_serial_tx) == 1
             assert not (yield tx.o_busy)
 
-        sim.add_sync_process(fn())
+        sim.add_process(fn())
         sim.run()
